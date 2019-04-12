@@ -26,6 +26,7 @@
   1.点击左上角logo可以跳转到首页；
   2.可以实现商品的数量加减和删除功能。 
 
+我再试试。
 
 注册页面（zhuce.html）：
   1.数据接口：http://www.icodeilife.cn/ctrl/register.php；
