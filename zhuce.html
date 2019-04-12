@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/public.css">
+    <style>
+        .margin{width:1190px;margin:0 auto;}
+        header{height:89px;line-height:89px;}
+        header .logo{float:left;}
+        header h3{float:left;margin-left:50px;font-size:20px;;}
+        header p{float:right;font-size:18px;}
+        header p a{color:#f00;font-weight:700;}
+        main{height:804px;background:url(https://ssl1.sephorastatic.cn/soa/pc/images/loginsSearchPassword_Bg.jpg) no-repeat;}
+
+        main .cont{margin-left:400px; }
+        main .cont input{outline:none;width:280px;height:30px;margin:15px 0;padding:0 5px;}
+        main .cont #yanz{width:120px;}
+        main .cont #random{width:120px;}
+        main .cont .cek{margin:0;width:15px;height:15px;}
+        main .cont span{font:10px/2 "";color:#f00;padding-left:5px;}
+        main .top span{font:30px/2 "";text-align: center;margin-left:200px;}
+
+        footer{background:#000;}
+        footer p{color:#fff;text-align:center;font:12px/20px "";}
+        footer p:nth-child(1){padding-top:30px;}
+        footer p:nth-child(2){padding-bottom:30px;}
+        footer p span{display:inline-block;padding-right:30px;}
+    </style>
+</head>
+<body>
+        <header>
+            <div class="margin">
+                <a href="index.html" class="logo"><img src="https://ssl1.sephorastatic.cn/soa/pc/images/search_logo.png"></a>
+                <h3>欢迎注册</h3>
+                <p><span>已有账号？</span><a href="denglu.html">立即登录</a></p>
+            </div>
+        </header>
+        <main>
+          <div class="margin">
+            <div class="cont">
+                用户名：<input type="text" id="tel" placeholder="请输入用户名"><span></span><br>
+                请设置密码：<input type="password" id="pass" placeholder="请输入密码"><span></span><br>
+                请确认密码：<input type="password" id="pass1" placeholder="请再次输入密码"><span></span><br>
+                手机：<input type="text" id="phone" placeholder="建议输入常用手机号！"><span></span><br>
+                验证码：<input type="text" id="yanz" placeholder="请输入验证码"/>
+                    <input type="text" disabled id="random" value="" /><span></span><br>
+                    <input type="checkbox" id="cek" class="cek"/><a href="#">同意贵州电商云《用户协议》和《隐私声明》</a><br>
+                    <input type="button" value="注册" id="btn">
+                    <span id="msg"></span>
+            </div>
+          </div>
+        </main>
+        <footer>
+            <p>
+                <img src="https://ssl1.sephorastatic.cn/soa/pc/images/footer-redords-icon.png">
+                <span>沪公网安备 683258785798439号</span>
+                <span>ICP备案序号：沪ICP备2184021号</span>
+                <span>食品经营许可证</span>
+                <span>网站使用条款</span>
+                <span>严正声明</span>
+            </p>
+            <p>本网站隶属于丝芙兰（上海）化妆品销售有限公司（企业法人营业执照）</p>
+        </footer>
+</body>
+<script src="libs/ajax.3.0.js"></script>
+<script src="libs/jquery.2.2.4.js"></script>
+<script type="text/javascript">
+    var ouser=document.getElementById("tel")
+    var opass=document.getElementById("pass")
+    var opass2=document.getElementById("pass1")
+    var ophone=document.getElementById("phone")
+    var oyanz=document.getElementById("yanz")
+    var ordm=document.getElementById("random")
+    var obtn=document.getElementById("btn")
+    var uonOff=ponOff=p2onOff=tonOff=eonOff=false;
+    ouser.onblur=function(){
+        var reg=/^[\u2E80-\u9FFF\w\-]{4,20}$/;
+        if(reg.test(this.value)){
+            ouser.nextElementSibling.innerHTML="";
+            uonOff=true;
+        }else{ouser.nextElementSibling.innerHTML="用户名不符合规定";uonOff=false;}
+    }
+    opass.onblur=function(){
+          var a=b=c=0;
+          var numReg=/\d+/;
+          if(numReg.test(this.value)){a=1;}
+          var azReg=/[a-zA-Z]+/;
+          if(azReg.test(this.value)){b=1;}
+          var tReg=/[^0-9a-zA-Z]+/;
+          if(tReg.test(this.value)){c=1;}
+          ponOff=true;
+          switch(a+b+c){
+              case 1:this.nextElementSibling.innerHTML ="密码过于简单";break;
+              case 2:this.nextElementSibling.innerHTML ="密码强度一般";break;
+              case 3:this.nextElementSibling.innerHTML ="密码强";break;
+              default:
+                this.nextElementSibling.innerHTML="请输入密码";
+                ponOff=false;
+          }
+          if(opass2===this.value){
+              pass1.nextElementSibling.innerHTML="验证成功";p2onOff=true;
+          }else{pass1.nextElementSibling.innerHTML="两次密码不一致";p2onOff=false;}
+     }
+    opass2.onblur=function(){
+        if(opass.value===this.value){
+            this.nextElementSibling.innerHTML="验证成功";p2onOff=true;
+        }else{this.nextElementSibling.innerHTML="两次密码不一致";p2onOff=false;}
+    }
+    ophone.onblur=function(){
+          var telReg=/^1\d{10}$/;
+          if(telReg.test(this.value)){
+            ophone.nextElementSibling.innerHTML="";tonOff=true;
+          }else{
+            ophone.nextElementSibling.innerHTML="手机号不符合要求";tonOff=false;
+          }
+      }
+  ordm.value = getRandom()
+//		ordm.style.display="none";
+  oyanz.onblur = function(){
+      if(oyanz.value){
+          if(oyanz.value == ordm.value){
+              oyanz.nextElementSibling.innerHTML="";ronOff=true;
+          }else{
+             ordm.nextElementSibling.innerHTML="验证码不正确,请重新输入";ronOff=false;
+                   clearTimeout(timer)
+                     var timer=setTimeout(function(){
+                        ordm.nextElementSibling.innerHTML="";
+              },3000)}
+      }else{
+          oyanz.value="请输入验证码";
+      }
+  }
+      obtn.onclick=function(){
+          if(uonOff && ponOff && p2onOff && tonOff){
+              alert("验证成功");}else{alert("验证失败");}
+      }
+  function getRandom(){
+      var num1 = Math.round(Math.random() * 9)
+      var num2 = Math.round(Math.random() * 9)
+      var num3 = Math.round(Math.random() * 9)
+      var num4 = Math.round(Math.random() * 9)
+      return ""+num1+num2+num3+num4
+  }
+  function Register(options){
+      this.btn=options.btn;
+      this.tel=options.tel;
+      this.pass=options.pass;
+      this.pass1=options.pass1;
+    //   this.email=options.email;
+      this.phone=options.phone;
+      this.yanz=options.yanz;
+      this.random=options.random;
+      this.cek=options.cek;
+      this.msg=options.msg;
+      this.url=options.url;
+      this.init()
+  }
+  Register.prototype.init=function(){
+      var that=this;
+      this.btn.onclick=function(){
+          that.load()
+      }
+  }
+  Register.prototype.load=function(){
+      var that=this;
+      ajaxPost(this.url,{
+          tel:this.tel.value,
+          pass:this.pass.value,
+          pass1:this.pass1.value,
+          phone:this.phone.value,
+          yanz:this.yanz.value,
+          random:this.random.value
+      }).then(function(res){
+          console.log(res)
+         switch(res){
+             case "0":that.msg.innerHTML="重名，换一个";break;
+             case "1":that.msg.innerHTML="注册成功，3秒之后跳转到登录";
+                setTimeout(()=>{
+                    location.href="denglu.html"
+                },3000);
+                break;
+                case "2":that.msg.innerHTML="请输入完整信息";break;
+         }
+      },function(code){
+          console.log("前端的ajax请求失败，有可能是网络原因或接口错误，或服务器问题，反正不一定是注册失败")
+      })
+  }
+  new Register({
+      btn:document.getElementById("btn"),
+      tel:document.getElementById("tel"),
+      pass:document.getElementById("pass"),
+      pass1:document.getElementById("pass1"),
+      phone:document.getElementById("phone"),
+      yanz:document.getElementById("yanz"),
+      random:document.getElementById("random"),
+      msg:document.getElementById("msg"),
+      url:"http://www.icodeilife.cn/ctrl/register.php"
+  })
+</script>
+</html>

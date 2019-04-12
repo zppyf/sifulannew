@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/public.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <style>
+        .margin{width:1190px;margin:0 auto;}
+        header div{height:89px;line-height:89px;}
+        main{position:relative;height:610px;background:url(https://ssl1.sephorastatic.cn/wcsfrontend/campaign/campaign_img/2019/03/banner/hp_loginlage_20190321.jpg);}
+        main .box{position:absolute;right:50px;top:50px;padding:30px;color:#000;font:16px/2 "";width:300px;height:300px;background:#fff;}
+        main .box span{}
+
+        main .box .shoujihao{padding:0 10px;border:1px solid #ccc;margin:10px 0;}
+        main .box  input{border:0;outline:none;padding:0 10px;}
+        main .box .mima{padding:0 10px;border:1px solid #ccc;margin:10px 0;}
+        main .box .btn{width:300px;height:40px;}
+        main .box .zhu{color:#f00;}
+        main .box .weixin{color:#ddd;}
+        main .box .weixin:hover{color:#aaa;}
+        main .box .qq{color:#ddd;}
+        main .box .qq:hover{color:#aaa;}
+        main .box .weibo{color:#ddd;}
+        main .box .weibo:hover{color:#aaa;}
+        main .box .iconfont{font-size:24px;}
+        main #msg{font-size:12px;color:#000;}
+
+        footer{background:#000;}
+        footer p{color:#fff;text-align:center;font:12px/20px "";}
+        footer p:nth-child(1){padding-top:30px;}
+        footer p:nth-child(2){padding-bottom:30px;}
+        footer p span{display:inline-block;padding-right:30px;}
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="margin">
+            <a href="index.html"><img src="https://ssl1.sephorastatic.cn/soa/pc/images/search_logo.png"></a>
+        </div>
+    </header>
+    <main>
+      <div class="margin">
+          <div class="box">
+              <span>登录丝芙兰官网</span><br>
+              <div class="shoujihao">
+                  <span class="iconfont icon-ren"></span><input type="text" placeholder="用户名" class="user" id="user">
+              </div>
+              <div class="mima">
+                  <span class="iconfont icon-mima"></span><input type="password" placeholder="密码" class="pass" id="pass">
+              </div>
+              <input type="button" value="登录" class="btn" id="btn">
+              <a href="" class="weixin"><span class="iconfont icon-weixin"></span></a> 
+              <a href="" class="qq"><span class="iconfont icon-qq"></span></a> 
+              <a href="" class="weibo"><span class="iconfont icon-weibo"></span></a>
+              <span id="msg"></span><br>
+              <a href="">忘记密码？</a>
+              <a href="zhuce.html" class="zhu">免费注册</a>
+              
+          </div>
+      </div>
+    </main>
+    <footer>
+        <p>
+            <img src="https://ssl1.sephorastatic.cn/soa/pc/images/footer-redords-icon.png">
+            <span>沪公网安备 683258785798439号</span>
+            <span>ICP备案序号：沪ICP备2184021号</span>
+            <span>食品经营许可证</span>
+            <span>网站使用条款</span>
+            <span>严正声明</span>
+        </p>
+        <p>本网站隶属于丝芙兰（上海）化妆品销售有限公司（企业法人营业执照）</p>
+    </footer>
+</body>
+<script type="text/javascript" src="libs/ajax.3.0.js"></script>
+<script type="text/javascript">
+    function Register(options){
+        this.btn=options.btn;
+        this.user=options.user;
+        this.pass=options.pass;
+        this.msg=options.msg;
+        this.url=options.url;
+        this.init()
+    }
+    Register.prototype.init=function(){
+        var that=this;
+        this.btn.onclick=function(){
+            that.load()
+        }
+    }
+    Register.prototype.load=function(){
+        var that=this;
+        ajaxPost(this.url,{
+            user:this.user.value,
+            pass:this.pass.value
+        }).then(function(res){
+            switch(res){
+            case "0":that.msg.innerHTML="用户名密码不符";break;
+            case "1":that.msg.innerHTML="登录失败，请重新登录";break;
+            default:
+            that.msg.innerHTML="登录成功";
+                setTimeout(()=>{
+                    location.href="index.html"
+                    },3000);
+            that.res=JSON.parse(res);
+            console.log(that.res);
+            }
+        },function(code){
+            console.log("前端的ajax请求失败，有可能是网络原因或接口错误，或服务器问题，反正不一定是登录失败")
+        })
+    }
+    new Register({
+        btn:document.getElementById("btn"),
+        user:document.getElementById("user"),
+        pass:document.getElementById("pass"),
+        msg:document.getElementById("msg"),
+        url:"http://www.icodeilife.cn/ctrl/login.php"
+    })
+</script>
+</html>

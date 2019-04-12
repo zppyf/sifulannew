@@ -1,0 +1,57 @@
+[{
+    "name":"LANCOME",
+    "title":"兰蔻密集家族嘉年华礼盒",
+	"price":"￥1760.00",
+    "src":"https://ssl2.sephorastatic.cn/products/4/6/7/2/4/2/1_n_06989_180x180.jpg",
+    "goodsId":1,
+    "url":"lankouxiangqing.html"
+},{
+    "name":"SEPHORACOLLECTION",
+    "title":"丝芙兰柠檬籽透亮耀活礼盒",
+	"price":"￥249.00",
+    "src":"https://ssl3.sephorastatic.cn/products/4/7/0/0/2/9/1_n_07017_180x180.jpg",
+    "goodsId":2,
+    "url":"detailspage.html"
+},{
+    "name":"ESTEELAUDER",
+    "title":"雅诗兰黛专研紧塑精华素5...",
+	"price":"￥980.00",
+    "src":"https://ssl3.sephorastatic.cn/products/V/S/1/0/0/1/1/3/4/1_n_06983_180x180.jpg",
+	"goodsId":3,
+    "url":"detailspage.html"
+},{
+    "name":"PETERTHOMASROTH",
+    "title":"彼得罗夫沁润淡斑面膜",
+	"price":"￥520.00",
+    "src":"https://ssl4.sephorastatic.cn/products/4/7/1/2/4/6/1_n_07054_180x180.jpg",
+	"goodsId":4,
+    "url":"detailspage.html"
+},{
+    "name":"ReFa",
+    "title":"黎珐 点压面部专用美容仪...",
+	"price":"￥2100.00",
+    "src":"https://ssl1.sephorastatic.cn/products/4/7/6/7/9/7/1_n_07136_180x180.jpg",
+	"goodsId":5,
+    "url":"detailspage.html"
+},{
+    "name":"CLINIQUE",
+    "title":"倩碧卸妆霜套装",
+	"price":"￥260.00",
+    "src":"https://ssl1.sephorastatic.cn/products/4/7/0/2/7/9/1_n_07136_180x180.jpg",
+	"goodsId":6,
+    "url":"detailspage.html"
+},{
+    "name":"KENZO",
+    "title":"凯卓明星面膜甄选礼盒",
+	"price":"￥1280.00",
+    "src":"https://ssl2.sephorastatic.cn/products/4/7/2/5/6/2/1_n_07120_180x180.jpg",
+	"goodsId":7,
+    "url":"detailspage.html"
+},{
+    "name":"NUXE",
+    "title":"欧树植物奶保湿套装",
+	"price":"￥475.00",
+    "src":"https://ssl4.sephorastatic.cn/products/4/5/4/5/8/3/1_n_07080_180x180.jpg",
+	"goodsId":8,
+    "url":"detailspage.html"
+}]
